@@ -55,10 +55,30 @@ export const PlantScanner: React.FC<PlantScannerProps> = ({
     setScanResult(null);
   };
 
+  const [scanStage, setScanStage] = useState('Initiating botanical check...');
+
   const handleScan = async () => {
     if (!selectedImage) return;
 
     setIsScanning(true);
+    setScanStage('Initializing neural scanner...');
+    
+    // Diagnostic scanner stage phases
+    const stages = [
+      'Scanning foliage shape and color density...',
+      'Mapping leaf nodes and stem structures...',
+      'Running pigment & moisture index checks...',
+      'Querying Claude botanical database...',
+      'Compiling final diagnostic report...'
+    ];
+    let stageIdx = 0;
+    const interval = setInterval(() => {
+      if (stageIdx < stages.length - 1) {
+        stageIdx++;
+        setScanStage(stages[stageIdx]);
+      }
+    }, 450);
+
     try {
       const result = await identifyPlantFromPhoto(
         selectedImage,
@@ -66,12 +86,12 @@ export const PlantScanner: React.FC<PlantScannerProps> = ({
         demoMode ? mockChoice : undefined
       );
       setScanResult(result);
-      // Pre-fill custom name with common name
       setCustomName(result.commonName);
     } catch (error: any) {
       console.error(error);
       alert(`Identification failed: ${error.message || 'API Error. Please check settings.'}`);
     } finally {
+      clearInterval(interval);
       setIsScanning(false);
     }
   };
@@ -155,15 +175,47 @@ export const PlantScanner: React.FC<PlantScannerProps> = ({
                 
                 {/* Laser scan line effect */}
                 {isScanning && (
-                  <div className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_15px_#10b981] animate-scan z-10" />
+                  <div className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_15px_#10b981] animate-scan z-20" />
+                )}
+
+                {/* High tech target box overlays */}
+                {isScanning && (
+                  <div className="absolute inset-0 pointer-events-none z-10 select-none">
+                    {/* Bounding box 1 */}
+                    <div className="absolute border border-emerald-400/50 bg-emerald-500/5 w-16 h-16 rounded-md animate-pulse" style={{ left: '15%', top: '20%' }}>
+                      <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-emerald-400" />
+                      <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-emerald-400" />
+                      <span className="absolute -top-4 left-0 text-[8px] bg-emerald-500 text-emerald-950 font-bold px-1 rounded truncate">
+                        Apex Leaf
+                      </span>
+                    </div>
+
+                    {/* Bounding box 2 */}
+                    <div className="absolute border border-indigo-400/40 bg-indigo-500/5 w-20 h-20 rounded-md animate-pulse" style={{ right: '15%', top: '30%', animationDelay: '0.4s' }}>
+                      <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-indigo-400" />
+                      <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-indigo-400" />
+                      <span className="absolute -top-4 right-0 text-[8px] bg-indigo-500 text-white font-bold px-1 rounded truncate">
+                        Stem Node
+                      </span>
+                    </div>
+
+                    {/* Bounding box 3 */}
+                    <div className="absolute border border-amber-400/40 bg-amber-500/5 w-24 h-14 rounded-md animate-pulse" style={{ left: '35%', bottom: '15%', animationDelay: '0.8s' }}>
+                      <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-amber-400" />
+                      <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-amber-400" />
+                      <span className="absolute -top-4 left-0 text-[8px] bg-amber-500 text-amber-950 font-bold px-1 rounded truncate">
+                        Substrate Soil
+                      </span>
+                    </div>
+                  </div>
                 )}
                 
                 {/* Scanning overlay */}
                 {isScanning && (
-                  <div className="absolute inset-0 bg-emerald-950/20 backdrop-blur-[2px] flex items-center justify-center">
-                    <div className="bg-slate-900/90 border border-emerald-500/30 px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-3 text-xs text-emerald-300 font-semibold animate-pulse">
-                      <RefreshCw className="w-4 h-4 animate-spin text-emerald-400" />
-                      <span>Claude is analyzing...</span>
+                  <div className="absolute inset-0 bg-emerald-950/20 backdrop-blur-[2px] flex items-center justify-center z-10">
+                    <div className="bg-slate-900/90 border border-emerald-500/30 px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-3 text-xs text-emerald-300 font-semibold animate-pulse max-w-[85%] text-center">
+                      <RefreshCw className="w-4 h-4 animate-spin text-emerald-400 flex-shrink-0" />
+                      <span>{scanStage}</span>
                     </div>
                   </div>
                 )}

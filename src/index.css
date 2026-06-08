@@ -88,3 +88,42 @@
     radial-gradient(at 80% 90%, rgba(4, 120, 87, 0.25) 0px, transparent 50%);
   overflow: hidden;
 }
+
+/* Background Leaf Particle Animations */
+@keyframes fall {
+  0% {
+    transform: translateY(-10%) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0px) rotate(15deg);
+  }
+  50% {
+    transform: translateX(45px) rotate(-15deg);
+  }
+}
+
+.leaf-particle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  color: rgba(52, 211, 153, 0.12); /* emerald-400 translucent */
+  animation: fall 12s linear infinite;
+}
+
+.leaf-particle svg {
+  animation: sway 4s ease-in-out infinite;
+}

@@ -6,6 +6,7 @@ import { WeatherPanel } from './components/WeatherPanel';
 import { CalendarPanel } from './components/CalendarPanel';
 import { GardenGrid } from './components/GardenGrid';
 import { SettingsPanel } from './components/SettingsPanel';
+import { AmbientBackground } from './components/AmbientBackground';
 import type { Location, FrostDates, Plant, CalendarTask, AlertItem, AppSettings, HealthLogEntry } from './types/garden';
 import { Leaf } from 'lucide-react';
 
@@ -418,6 +419,7 @@ function App() {
     <div className="flex flex-col md:flex-row min-h-screen relative overflow-x-hidden">
       {/* Organic background mesh */}
       <div className="mesh-bg" />
+      <AmbientBackground />
 
       {/* Navigation Sidebar */}
       <Sidebar
