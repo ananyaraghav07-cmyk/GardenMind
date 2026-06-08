@@ -26,11 +26,11 @@ export const PlantScanner: React.FC<PlantScannerProps> = ({
 
   // Pre-compiled mock images for scanning visualization
   const mockImageUrls: Record<string, string> = {
-    tomato: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&q=80&w=400',
-    basil: 'https://images.unsplash.com/photo-1618164435735-413d3b066c9a?auto=format&fit=crop&q=80&w=400',
-    monstera: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=400',
-    rose: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400',
-    succulent: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&q=80&w=400',
+    tomato: '/tomato.png',
+    basil: '/basil.png',
+    monstera: '/monstera.png',
+    rose: '/rose.png',
+    succulent: '/succulent.png',
   };
 
   const mockChoices: Array<'tomato' | 'basil' | 'monstera' | 'rose' | 'succulent'> = ['tomato', 'basil', 'monstera', 'rose', 'succulent'];

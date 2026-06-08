@@ -35,7 +35,7 @@ const DEMO_PLANTS: Plant[] = [
     species: 'Solanum lycopersicum',
     commonName: 'Tomato (Roma)',
     addedDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days ago
-    photo: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&q=80&w=400',
+    photo: '/tomato.png',
     healthScore: 9,
     pests: [],
     diseases: [],
@@ -56,7 +56,7 @@ const DEMO_PLANTS: Plant[] = [
     species: 'Monstera deliciosa',
     commonName: 'Swiss Cheese Plant',
     addedDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(), // 60 days ago
-    photo: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=400',
+    photo: '/monstera.png',
     healthScore: 5,
     pests: ['Spider Mites'],
     diseases: ['Root Rot (early stage)'],
