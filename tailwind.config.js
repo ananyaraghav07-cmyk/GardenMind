@@ -7,6 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
+        slate: {
+          50: '#f4f8f6',
+          100: '#e6efe9',
+          200: '#ccdcd1',
+          300: '#a3c2b1',
+          400: '#75a38b',
+          500: '#51856b',
+          600: '#3e6a53',
+          700: '#2f5743',
+          800: '#0f291e', // deep pine/sage border
+          900: '#051910', // rich forest charcoal
+          950: '#010d08', // ultra dark pine green black
+        },
         forest: {
           50: '#f2f8f5',
           100: '#e1efe8',
