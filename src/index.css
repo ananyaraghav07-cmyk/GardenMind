@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased selection:bg-forest-500 selection:text-white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Premium Glassmorphism */
+  .glass-panel {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .glass-panel-light {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  
+  .glass-panel-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass-panel-hover:hover {
+    background: rgba(15, 23, 42, 0.7);
+    border-color: rgba(74, 139, 111, 0.35); /* forest-500 */
+    box-shadow: 0 10px 30px -10px rgba(74, 139, 111, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Custom Scrollbars */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.2);
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(74, 139, 111, 0.25);
+    border-radius: 9999px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(74, 139, 111, 0.45);
+  }
+  
+  /* Glowing buttons and accents */
+  .glow-green {
+    box-shadow: 0 0 20px 2px rgba(74, 139, 111, 0.1);
+  }
+
+  .glow-green-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glow-green-hover:hover {
+    box-shadow: 0 0 25px 4px rgba(74, 139, 111, 0.25);
+  }
+}
+
+/* Organic animated background gradient mesh */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #020617;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(20, 83, 45, 0.12) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, rgba(74, 139, 111, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(133, 162, 37, 0.06) 0px, transparent 50%),
+    radial-gradient(at 80% 90%, rgba(17, 34, 27, 0.25) 0px, transparent 50%);
+  overflow: hidden;
+}
